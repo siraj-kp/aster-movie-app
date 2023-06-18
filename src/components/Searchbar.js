@@ -8,44 +8,44 @@ import {
 } from "./styles/Searchbar.style";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../redux/feature/movieSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setSearchMovies } from "../redux/feature/searchSlice";
 
 function Searchbar() {
   const query = useSelector((state) => state.search.query);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     dispatch(setSearchMovies(e.target.value));
   };
 
-  const handleClose = (e) => {
-    e.preventDefault();
-
+  const handleClose = () => {
     dispatch(setSearchMovies(""));
-    navigate(-1);
+    if (location.pathname === "/search") {
+      navigate(-1);
+    }
   };
 
-  const searchMovie = (e) => {
-    e.preventDefault();
+  const searchMovie = () => {
     navigate("/search");
   };
 
   return (
     <SearchContainer>
-      <FormContainer onSubmit={searchMovie}>
-        <SearchInput
-          name="query"
-          value={query}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        {query !== "" && (
-          <CloseButton type="button" onClick={handleClose}></CloseButton>
-        )}
-        <SearchButton type="submit">Search</SearchButton>
-      </FormContainer>
+      <SearchInput
+        name="query"
+        value={query}
+        onChange={handleChange}
+        autoComplete="off"
+      />
+      {query !== "" && (
+        <CloseButton type="button" onClick={handleClose}></CloseButton>
+      )}
+      <SearchButton type="button" onClick={searchMovie}>
+        Search
+      </SearchButton>
     </SearchContainer>
   );
 }
