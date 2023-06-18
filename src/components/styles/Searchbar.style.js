@@ -4,7 +4,7 @@ export const SearchContainer = styled.div`
   position: relative;
   width: 100%;
   height: 48px;
-  background-color: #252846;
+  background-color: ${({ theme }) => theme.background.searchContainer};
   color: ${({ theme }) => theme.color.wrapper};
   border-radius: 0;
   dispaly: flex;
@@ -75,7 +75,7 @@ export const SearchButton = styled.button`
   right: 0px;
   width: 15%;
   height: 100%;
-  background-color: #000;
+  background-color: ${({ theme }) => theme.background.SearchButton};
   outline: none;
   font-size: 16px;
   border: 1px solid transparent;

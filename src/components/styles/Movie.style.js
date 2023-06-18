@@ -20,13 +20,16 @@ export const PosterContent = styled.div`
 export const PosterTitle = styled.h1`
   font-size: ${(props) => props.fontsize ?? "50px"};
   margin: 0;
+  color: #fff;
 `;
 
 export const PosterDate = styled.p`
   font-size: 22px;
   margin-bottom: 0;
+  color: #fff;
 `;
 
 export const PosterOverview = styled.p`
   font-size: 18px;
+  color: #fff;
 `;

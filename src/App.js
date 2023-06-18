@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Router,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import { ThemeProvider } from "styled-components";
@@ -14,32 +8,20 @@ import { useSelector } from "react-redux";
 import SearchView from "./pages/SearchView";
 
 function App() {
-  const query = useSelector((state) => state.search.query);
-
-  const theme = {
-    background: {
-      wrapper: "linear-gradient(180deg,#16181f,#0f1014 33.33%)",
-    },
-    color: {
-      wrapper: "#e1e6f0",
-    },
-  };
-
-  // if (query !== "") {
-  //   return <Navigate to="/" />;
-  // }
+  const theme = useSelector((state) => state.theme.themeStyle);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/search" element={<SearchView />} />
 
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/search" element={<SearchView />} />
-
-        <Route path="/movie/:id" element={<Movie />} />
-      </Routes>
+          <Route path="/movie/:id" element={<Movie />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

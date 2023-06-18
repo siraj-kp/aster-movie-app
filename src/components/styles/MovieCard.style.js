@@ -24,7 +24,7 @@ export const MovieCardContainer = styled.div`
 `;
 
 export const MovieCardWrapper = styled.div`
-  background: #16181f;
+  background: ${({ theme }) => theme.background.MovieCard};
   width: 100%;
   height: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -58,7 +58,7 @@ export const MovieCardOverview = styled.p`
 export const LargeButton = styled.button`
   width: 100%;
   height: ${(props) => props.height ?? "40px"};
-  background-color: #000;
+  background-color: ${({ theme }) => theme.background.SearchButton};
   outline: none;
   border: 1px solid transparent;
   margin-bottom: 20px;
